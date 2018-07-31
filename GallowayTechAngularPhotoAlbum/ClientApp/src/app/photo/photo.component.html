@@ -1,0 +1,40 @@
+<h1>Photos</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!photos"><em>Loading...</em></p>
+
+<table class='table' *ngIf="photos">
+  <thead>
+    <tr>
+      <th>File Name</th>
+      <th>Caption</th>
+      <!--<th>DirectoryName</th>-->
+      <!--<th>FullPath</th>-->
+      <th>Pic</th>
+      <th>Size</th>
+      <th>SearchText</th>
+      <th>IsPublic</th>
+      <th>DateCreated</th>
+      <th>DateUpdated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let photo of photos">
+      <td>{{ photo.FileName }}</td>
+      <td>{{ photo.Caption }}</td>
+      <!--<td>{{ photo.DirectoryName }}</td>-->
+      <!--<td>{{ photo.FullPath }}</td>-->
+      <td>
+        <a href="{{photo.URL}}" class="mid">
+          <img [src]="photo.URL" alt="{{photo.Caption}}" />  <!--property binding, look it up-->
+        </a>
+      </td>
+      <td>{{ photo.Size }}</td>
+      <td>{{ photo.SearchText }}</td>
+      <td>{{ photo.IsPublic }}</td>
+      <td>{{ photo.DateCreated | date:'yyyy-MM-dd'}}</td>
+      <td>{{ photo.DateUpdated | date:'yyyy-MM-dd'}}</td>
+    </tr>
+  </tbody>
+</table>
