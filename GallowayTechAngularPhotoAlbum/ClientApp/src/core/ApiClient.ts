@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { environment } from '../environments/environment';
+
+@Injectable()
+export class ApiClient {
+  constructor(private httpClient: HttpClient) { }
+
+  private getUrl(url: string) {
+    const trimmedUrl = url.startsWith('/') ? url.substring(1) : url;
+    return `${environment.apiUrl}/${trimmedUrl}`;
+  }
+
+  public post<T>(url: string, body: string, options?: Object
+    //snip
+  ) {
+    return this.httpClient.post<T>(this.getUrl(url), body, options);
+  }
+
+  public get<T>(url: string, body: string, options?: Object
+    //snip!
+  ) {
+    return this.httpClient.get<T>(this.getUrl(url), options);
+  }
+
+  public put<T>(url: string, body: string, options?: Object
+    //snip!
+  ) {
+    return this.httpClient.put<T>(this.getUrl(url), body, options);
+  }
+}
+
